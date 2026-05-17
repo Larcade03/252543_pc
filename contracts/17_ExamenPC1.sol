@@ -10,22 +10,32 @@ contract Almacen252543{
         uint256 id;
         string nombre;
         uint256 stock;
+        bool estado;
     }
  
      Producto[] public productos;
+     address public dirContrato;
 
-    constructor() {
-        console.log("Ejecutado por: 252543- Bray Luigui Vargas Perez");
-
-        //salida: contract address:  0xDA0bab807633f07f013f94DD0E6A4F96F8742B53
-    }
-
-    function agregarElemento(uint256 _id, string memory _nombre, uint256 _stock) public {
-        productos.push(Producto(_id, _nombre, _stock));
-    }
-
-    function contarElementos() public view returns (uint256) {
+    modifier registrarLog() {
         console.log("Ejecutado por: 252543 - Bray Luigui Vargas Perez");
+        _;
+    }
+    constructor() registrarLog {
+        dirContrato = address(this);
+    }
+
+   function agregarElemento(uint256 _id, string memory _nombre, uint256 _stock) public registrarLog {
+        
+        for (uint256 i = 0; i < productos.length; i++) {
+            require(productos[i].id != _id, "Producto con ese ID ya existe");
+        }
+
+        require(_stock > 0, "El stock debe ser mayor a cero");
+
+        productos.push(Producto(_id, _nombre, _stock, true));
+    }
+
+    function contarElementos() public view registrarLog returns (uint256) {
         return productos.length;
     }
 }
