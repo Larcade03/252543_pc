@@ -38,4 +38,25 @@ contract Almacen252543{
     function contarElementos() public view registrarLog returns (uint256) {
         return productos.length;
     }
+
+    function inactivarElemento(uint256 _posicion) public registrarLog {
+        require(_posicion < productos.length, "Posicion fuera de rango");
+        productos[_posicion].estado = false;
+    }
+
+    function pintarElementosActivos() public view registrarLog {
+        for (uint256 i = 0; i < productos.length; i++) {
+            if (productos[i].estado == true) {
+                console.log("Producto activo:", productos[i].id, productos[i].nombre);
+            }
+        }
+    }
+
+    function pintarElementosImpares() public view registrarLog {
+        for (uint256 i = 0; i < productos.length; i++) {
+            if (productos[i].id % 2 != 0) {
+                console.log("Producto ID impar:", productos[i].id, productos[i].nombre);
+            }
+        }
+    }
 }
