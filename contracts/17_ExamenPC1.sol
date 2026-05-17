@@ -15,7 +15,6 @@ contract Almacen252543{
      Producto[] public productos;
 
     constructor() {
-        // Esto pintará en la terminal exactamente el formato solicitado
         console.log("Ejecutado por: 252543- Bray Luigui Vargas Perez");
     }
 }
