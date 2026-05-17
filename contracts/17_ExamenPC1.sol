@@ -4,7 +4,7 @@ pragma solidity >=0.8.2 <0.9.0;
 
 import "hardhat/console.sol";
 
-contract Almacen{
+contract Almacen252543{
     ///252543
     struct Producto {
         uint256 id;
